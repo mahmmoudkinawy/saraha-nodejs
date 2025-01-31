@@ -17,10 +17,10 @@ connectDB();
 
 // Seed Admin User
 const seedAdmin = async () => {
-  const adminExists = await User.findOne({ email: 'admin@test.com' });
+  const adminExists = await User.findOne({ email: 'admin@example.com' });
   if (!adminExists) {
     const admin = new User({
-      email: 'admin@test.com',
+      email: 'admin@example.com',
       password: 'Pa$$w0rd',
       firstName: 'admin',
       lastName: 'admin',
@@ -34,6 +34,7 @@ seedAdmin();
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/messages', require('./routes/messages'));
+app.use('/api/users', require('./routes/users'));
 
 // Swagger Documentation
 swaggerDocs(app);
