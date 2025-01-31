@@ -110,7 +110,6 @@ router.post('/login', validate(loginValidation), async (req, res) => {
     const fullName = `${user.firstName} ${user.lastName}`;
 
     res.json({
-      user._id,
       token,
       fullName,
     });
