@@ -6,7 +6,7 @@ services:
     ports:
       - '2001:5000'
     depends_on:
-      - mongo
+      - mongo2
     environment:
       MONGO_URI: mongodb://mongo2:27017/saraha
       JWT_SECRET: 'qwdhqwndhqwdhmiqwkdgqwkjdbqwkjdhqwkdjn'
