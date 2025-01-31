@@ -109,6 +109,7 @@ router.post('/login', validate(loginValidation), async (req, res) => {
 
     res.json({ token, user });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: 'Server error' });
   }
 });
