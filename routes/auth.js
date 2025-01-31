@@ -107,7 +107,12 @@ router.post('/login', validate(loginValidation), async (req, res) => {
       expiresIn: '1h',
     });
 
-    res.json({ token, user });
+    const fullName = `${user.firstName} ${user.lastName}`;
+
+    res.json({
+      token,
+      fullName,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Server error' });
