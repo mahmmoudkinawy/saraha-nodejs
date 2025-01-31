@@ -8,7 +8,7 @@ services:
     depends_on:
       - mongo2
     environment:
-      MONGO_URI: mongodbagain://mongo2:27017/saraha
+      MONGO_URI: mongodb://mongo2:27017/saraha
       JWT_SECRET: 'qwdhqwndhqwdhmiqwkdgqwkjdbqwkjdhqwkdjn'
     volumes:
       - .:/app
