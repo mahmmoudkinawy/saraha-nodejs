@@ -8,7 +8,7 @@ services:
     depends_on:
       - mongo2
     environment:
-      MONGO_URI: mongodb://mongo2:27017/saraha
+      MONGO_URI: mongodb2://mongo2:27017/saraha
       JWT_SECRET: 'qwdhqwndhqwdhmiqwkdgqwkjdbqwkjdhqwkdjn'
     volumes:
       - .:/app
@@ -16,7 +16,7 @@ services:
 
   mongo2:
     image: mongo:6
-    container_name: mongodb
+    container_name: mongodb2
     restart: always
     ports:
       - '27018:27017'
