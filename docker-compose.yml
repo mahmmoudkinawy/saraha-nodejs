@@ -5,12 +5,23 @@ services:
     build: .
     ports:
       - '2001:5000'
+    depends_on:
+      - mongo2
     environment:
-      MONGO_URI: mongodb://mongo2:27017/saraha
+      MONGO_URI: mongodbagain://mongo2:27017/saraha
       JWT_SECRET: 'qwdhqwndhqwdhmiqwkdgqwkjdbqwkjdhqwkdjn'
     volumes:
       - .:/app
       - /app/node_modules
+
+  mongo2:
+    image: mongo:6
+    container_name: mongodbagain
+    restart: always
+    ports:
+      - '27018:27017'
+    volumes:
+      - mongo_data:/data/db
 
 volumes:
   mongo_data:
