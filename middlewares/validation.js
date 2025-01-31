@@ -34,6 +34,13 @@ const loginValidation = Joi.object({
   }),
 });
 
+const messageValidation = Joi.object({
+  content: Joi.string().min(5).required().messages({
+    'string.empty': 'Message content is required',
+    'string.min': 'Message must be at least 5 characters long',
+  }),
+});
+
 // Middleware to apply validation
 const validate = (schema) => (req, res, next) => {
   const { error } = schema.validate(req.body, { abortEarly: false });
@@ -51,5 +58,6 @@ const validate = (schema) => (req, res, next) => {
 module.exports = {
   registerValidation,
   loginValidation,
+  messageValidation,
   validate,
 };
