@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   api:
+    container_name: saraha-api
     build: .
     ports:
       - '2001:5000'
@@ -16,7 +17,7 @@ services:
 
   mongo2:
     image: mongo:6
-    container_name: mongodbagain
+    container_name: saraha-mongo-db
     restart: always
     ports:
       - '27018:27017'
