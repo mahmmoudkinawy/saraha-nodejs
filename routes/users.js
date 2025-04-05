@@ -35,6 +35,8 @@ const router = express.Router();
  *                   type: string
  *                 lastName:
  *                   type: string
+ *                userName:
+ *                  type: string
  *       401:
  *         description: Not authenticated
  */
@@ -76,6 +78,8 @@ router.get("/profile", verifyToken, async (req, res) => {
  *                     type: string
  *                   lastName:
  *                     type: string
+ *                  userName:
+ *                    type: string
  */
 router.get("/", verifyToken, async (req, res) => {
   try {
