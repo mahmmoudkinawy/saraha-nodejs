@@ -1,10 +1,10 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const swaggerDocs = require('./swagger');
-const connectDB = require('./config/db');
-const User = require('./models/User');
-require('dotenv').config();
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const swaggerDocs = require("./swagger");
+const connectDB = require("./config/db");
+const User = require("./models/User");
+require("dotenv").config();
 
 const app = express();
 
@@ -17,24 +17,26 @@ connectDB();
 
 // Seed Admin User
 const seedAdmin = async () => {
-  const adminExists = await User.findOne({ email: 'admin@example.com' });
+  const adminExists = await User.findOne({ email: "admin@example.com" });
   if (!adminExists) {
     const admin = new User({
-      email: 'admin@example.com',
-      password: 'Pa$$w0rd',
-      firstName: 'admin',
-      lastName: 'admin',
+      email: "admin@example.com",
+      password: "Pa$$w0rd",
+      firstName: "admin",
+      lastName: "admin",
+      username: "admin_111",
+      createdAt: new Date().toISOString(),
     });
     await admin.save();
-    console.log('Admin user seeded!');
+    console.log("Admin user seeded!");
   }
 };
 seedAdmin();
 
 // Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/messages', require('./routes/messages'));
-app.use('/api/users', require('./routes/users'));
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/messages", require("./routes/messages"));
+app.use("/api/users", require("./routes/users"));
 
 // Swagger Documentation
 swaggerDocs(app);
