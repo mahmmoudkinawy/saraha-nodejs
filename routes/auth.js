@@ -45,14 +45,22 @@ const router = express.Router();
  *         description: User registered successfully
  *       400:
  *         description: Validation error or User already exists
- */
-router.post('/register', validate(registerValidation), async (req, res) => {
+ */ router.post('/register', validate(registerValidation), async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
+
+  console.log('Received registration request:', {
+    email,
+    firstName,
+    lastName,
+  });
 
   try {
     const existingUser = await User.findOne({ email });
-    if (existingUser)
+
+    if (existingUser) {
+      console.log('User already exists:', email);
       return res.status(400).json({ message: 'User already exists' });
+    }
 
     const user = new User({
       email,
@@ -62,9 +70,11 @@ router.post('/register', validate(registerValidation), async (req, res) => {
     });
 
     await user.save();
+    console.log('New user registered:', email);
 
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
+    console.error('Error during registration:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });
