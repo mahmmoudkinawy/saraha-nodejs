@@ -11,7 +11,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://64.23.184.122:2001',
+        url: 'http://144.91.75.57:5000',
         description: 'Local server',
       },
     ],
@@ -38,7 +38,7 @@ const swaggerSpec = swaggerJsdoc(options);
 
 const swaggerDocs = (app) => {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-  console.log('Swagger Docs available at http://64.23.184.122:2001/api-docs');
+  console.log('Swagger Docs available at http://144.91.75.57:5000/api-docs');
 };
 
 module.exports = swaggerDocs;
