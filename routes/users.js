@@ -1,6 +1,6 @@
-const express = require("express");
-const User = require("../models/User");
-const verifyToken = require("../middlewares/auth");
+const express = require('express');
+const User = require('../models/User');
+const verifyToken = require('../middlewares/auth');
 
 const router = express.Router();
 
@@ -35,20 +35,18 @@ const router = express.Router();
  *                   type: string
  *                 lastName:
  *                   type: string
- *                userName:
- *                  type: string
  *       401:
  *         description: Not authenticated
  */
-router.get("/profile", verifyToken, async (req, res) => {
+router.get('/profile', verifyToken, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select("-password");
+    const user = await User.findById(req.user.id).select('-password');
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: 'User not found' });
     }
     res.json(user);
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
@@ -66,9 +64,8 @@ router.get("/profile", verifyToken, async (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               type: array
+ *               type: object
  *               items:
- *                 type: object
  *                 properties:
  *                   _id:
  *                     type: string
@@ -78,17 +75,15 @@ router.get("/profile", verifyToken, async (req, res) => {
  *                     type: string
  *                   lastName:
  *                     type: string
- *                  userName:
- *                    type: string
  */
-router.get("/", verifyToken, async (req, res) => {
+router.get('/', verifyToken, async (req, res) => {
   try {
     const users = await User.find({ _id: { $ne: req.user.id } }).select(
-      "-password"
+      '-password'
     );
     res.json(users);
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
